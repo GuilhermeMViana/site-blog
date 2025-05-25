@@ -1,15 +1,3 @@
-// export default {
-//   content: [
-//     "./src/pages/**/*/.{js, jsx, ts, tsx, mdx}",
-//     "./src/components/**/*/.{js, jsx, ts, tsx, mdx}",
-//     "./sr/app/**/*/.{js, jsx, ts, tsx, mdx}",
-//   ],
-//   theme: {
-//     extend: {},
-//   },
-//   plugins: [],
-// };
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -17,7 +5,6 @@ export default {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/templates/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
@@ -75,9 +62,6 @@ export default {
         "body-md": ["16px", { lineHeight: "150%", fontWeight: "400" }],
         "body-sm": ["14px", { lineHeight: "150%", fontWeight: "400" }],
         "body-xs": ["12px", { lineHeight: "150%", fontWeight: "400" }],
-
-        // Body Tag
-        "body-tag": ["12px", { lineHeight: "100%", fontWeight: "400" }],
 
         // Action - Inter
         "action-md": ["16px", { lineHeight: "normal", fontWeight: "500" }],
