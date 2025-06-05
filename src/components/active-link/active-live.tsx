@@ -11,7 +11,7 @@ export const ActiveLink = ({ children, href, ...rest }: ActiveLinkProps) => {
   const isCurrentPath = router.asPath === href || router.asPath === rest.as;
   return (
     <Link
-      href="/"
+      href={href}
       className={cn(
         "text-action-sm transition-colors hover:text-blue-200",
         isCurrentPath ? "text-blue-200" : "text-gray-100"
