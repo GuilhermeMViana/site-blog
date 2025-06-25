@@ -1,7 +1,8 @@
 import { Search } from "@/components/search";
 import { useRouter } from "next/router";
+import { PostCard } from "./components/post-card";
 
-export function BlogFilter() {
+export function BlogList() {
   const router = useRouter();
   const query = router.query.q as string;
   const pageTitle = query
@@ -24,6 +25,8 @@ export function BlogFilter() {
           <Search />
         </div>
       </section>
+
+      <PostCard />
     </div>
   );
 }

@@ -1,5 +1,5 @@
-import { BlogFilter } from "@/templates/blog/sections/blog-filter";
+import { BlogList } from "@/templates/blog";
 
 export default function BlogPage() {
-  return <BlogFilter />;
+  return <BlogList />;
 }
