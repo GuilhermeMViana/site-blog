@@ -1,4 +1,22 @@
-import { defineDocumentType, makeSource } from "contentlayer2/source-files";
+import {
+  defineDocumentType,
+  defineNestedType,
+  makeSource,
+} from "contentlayer2/source-files";
+
+const Author = defineNestedType(() => ({
+  name: "Author",
+  fields: {
+    name: {
+      type: "string",
+      required: true,
+    },
+    avatar: {
+      type: "string",
+      required: true,
+    },
+  },
+}));
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
