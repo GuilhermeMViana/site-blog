@@ -1,6 +1,5 @@
 ---
 title: Transformando seu negócio em uma loja virtual
-date: 2024-12-20 10:04:00
 description: Se você está buscando uma maneira simples e eficaz de vender seus produtos online, o Site.Set é a solução perfeita para você.
 date: 2024/12/20 10:20:00
 img: /assets/primeiro-post.png
