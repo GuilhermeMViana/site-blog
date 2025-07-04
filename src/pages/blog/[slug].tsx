@@ -32,7 +32,7 @@ export default function PostPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator className="text-gray-300" />
           <BreadcrumbItem className="text-action-sm text-blue-200">
-            {post?.title}
+            {post.title}
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
