@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Avatar } from "@/components/avatar";
 import { Markdown } from "@/components/markdown";
+import { Button } from "@/components/ui/button";
+import { useShare } from "@/hooks";
 
 export default function PostPage() {
   const router = useRouter();
@@ -23,9 +25,17 @@ export default function PostPage() {
     ? new Date(post.date).toLocaleDateString("pt-BR")
     : "Data não disponível";
 
+  const postUrl = `https://site.set/blog/${slug}`;
+
+  const { shareButtons } = useShare({
+    url: postUrl,
+    title: post?.title,
+    text: post?.description,
+  });
+
   return (
     <main className="mt-32 text-gray-100">
-      <div className="container space-y-12 px-4 px-8">
+      <div className="container space-y-12 px-4 md:px-8">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -75,9 +85,31 @@ export default function PostPage() {
             </header>
 
             <div className="prose prove-invert max-w-none px-4 mt-12 md:px-6 lg:px-12">
-              <Markdown content={post.body.raw} />
+              <Markdown content={post?.body.raw} />
             </div>
           </article>
+
+          <aside className="space-y-6">
+            <div className="rounded-lg text-heading-xs text-gray-100">
+              <h2 className="mb-4 text-heading-xs text-gray-100">
+                Compartilhar
+              </h2>
+
+              <div className="space-y-3">
+                {shareButtons.map((provider) => (
+                  <Button
+                    variant="outline"
+                    key={provider.provider}
+                    onClick={() => provider.action()}
+                    className="w-full justify-start gap-2"
+                  >
+                    {provider.icon}
+                    {provider.name}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
     </main>

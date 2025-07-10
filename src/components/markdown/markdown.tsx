@@ -2,7 +2,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 type MarkdownProps = {
-  content: string;
+  content?: string;
 };
 
 export const Markdown = ({ content }: MarkdownProps) => {
