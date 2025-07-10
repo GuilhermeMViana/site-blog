@@ -10,60 +10,74 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Avatar } from "@/components/avatar";
+import { Markdown } from "@/components/markdown";
 
 export default function PostPage() {
   const router = useRouter();
-  const slug = router.query.slug as string;
-  const post = allPosts.find(
-    (post) => post.slug.toLowerCase() === slug.toLowerCase(),
-  )!;
-  const publishedAt = new Date(post.date).toLocaleDateString("pt-BR");
+  const slug = router.query.slug;
+  const post =
+    typeof slug === "string"
+      ? allPosts.find((post) => post.slug.toLowerCase() === slug.toLowerCase())
+      : undefined;
+  const publishedAt = post?.date
+    ? new Date(post.date).toLocaleDateString("pt-BR")
+    : "Data não disponível";
 
   return (
-    <main className="mt-32">
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/blog" className="text-action-sm text-gray-100">
-                Blog
-              </Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator className="text-gray-300" />
-          <BreadcrumbItem className="text-action-sm text-blue-200">
-            {post.title}
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+    <main className="mt-32 text-gray-100">
+      <div className="container space-y-12 px-4 px-8">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/blog" className="text-action-sm text-gray-100">
+                  Blog
+                </Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator className="text-gray-300" />
+            <BreadcrumbItem className="text-action-sm text-blue-200">
+              {post?.title}
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6 lg:gap-12">
-        <article className="bg-gray-600 rounded-lg overflow-hidden border-gray-400 border-[1px]">
-          <figure className="relative aspect-[16/10] w-full overflow-hidden rounded-lg">
-            <Image
-              src={post.img}
-              alt={post.title}
-              fill
-              className="object-cover"
-            />
-          </figure>
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6 lg:gap-12">
+          <article className="bg-gray-600 rounded-lg overflow-hidden border-gray-400 border-[1px]">
+            <figure className="relative aspect-[16/10] w-full overflow-hidden rounded-lg">
+              <Image
+                src={post?.img ?? ""}
+                alt={post?.title ?? ""}
+                fill
+                className="object-cover"
+              />
+            </figure>
 
-          <header className="p-4 md:p-6 lg:p-12 pb-0">
-            <h1 className="mb-6 text-balance text-heading-lg md:text-heading-xl lg:text-heading-xl">
-              {post.title}
-            </h1>
+            <header className="p-4 md:p-6 lg:p-12 pb-0 mt-8 md:mt-12">
+              <h1 className="mb-8 text-balance text-heading-lg md:text-heading-xl lg:text-heading-xl">
+                {post?.title}
+              </h1>
 
-            <Avatar.Container>
-              <Avatar.Image src={post.author.avatar} alt={post.author.name} />
-              <Avatar.Content>
-                <Avatar.Title>{post.author.name}</Avatar.Title>
-                <Avatar.Description>
-                  Publicado em <time dateTime={post.date}>{publishedAt}</time>
-                </Avatar.Description>
-              </Avatar.Content>
-            </Avatar.Container>
-          </header>
-        </article>
+              <Avatar.Container>
+                <Avatar.Image
+                  src={post?.author?.avatar || ""}
+                  alt={post?.author?.name || ""}
+                />
+                <Avatar.Content>
+                  <Avatar.Title>{post?.author?.name}</Avatar.Title>
+                  <Avatar.Description>
+                    Publicado em{" "}
+                    <time dateTime={post?.date}>{publishedAt}</time>
+                  </Avatar.Description>
+                </Avatar.Content>
+              </Avatar.Container>
+            </header>
+
+            <div className="prose prove-invert max-w-none px-4 mt-12 md:px-6 lg:px-12">
+              <Markdown content={post.body.raw} />
+            </div>
+          </article>
+        </div>
       </div>
     </main>
   );
