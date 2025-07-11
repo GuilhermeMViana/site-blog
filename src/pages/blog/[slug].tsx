@@ -12,7 +12,7 @@ import {
 import { Avatar } from "@/components/avatar";
 import { Markdown } from "@/components/markdown";
 import { Button } from "@/components/ui/button";
-import { useShare } from "@/hooks";
+import { useShare } from "@/hooks/use-share";
 
 export default function PostPage() {
   const router = useRouter();
