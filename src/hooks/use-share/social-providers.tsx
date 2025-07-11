@@ -11,7 +11,8 @@ export type SocialProvider =
   | "facebook"
   | "slack"
   | "x"
-  | "threads";
+  | "threads"
+  | "clipboard";
 
 export const SOCIAL_PROVIDERS = {
   linkedin: {
