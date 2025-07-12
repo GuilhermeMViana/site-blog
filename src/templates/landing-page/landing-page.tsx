@@ -13,7 +13,6 @@ export const LandingPage = () => {
       <FeatureSection />
       <SupportSection />
       <CustomerStorySection />
-      <CallToAction />
     </article>
   );
 };
