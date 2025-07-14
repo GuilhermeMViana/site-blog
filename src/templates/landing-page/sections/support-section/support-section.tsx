@@ -1,9 +1,4 @@
-import {
-  HeartHandshake,
-  PaintbrushVertical,
-  Store,
-  Weight,
-} from "lucide-react";
+import { HeartHandshake, PaintbrushVertical, Store } from "lucide-react";
 
 export const SupportSection = () => {
   return (

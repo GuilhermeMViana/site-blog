@@ -1,5 +1,4 @@
 import {
-  CallToAction,
   CustomerStorySection,
   FeatureSection,
   HeroSection,
@@ -16,4 +15,3 @@ export const LandingPage = () => {
     </article>
   );
 };
-``;
