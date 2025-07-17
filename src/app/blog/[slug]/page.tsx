@@ -1,12 +1,34 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { PostPage } from "@/templates/blog";
 import { allPosts } from "contentlayer/generated";
-import { notFound } from "next/navigation";
 
 type SlugPageProps = {
   params: Promise<{
     slug: string;
   }>;
 };
+
+export async function generateMetadata({
+  params,
+}: SlugPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = allPosts.find((post) => post.slug === slug);
+
+  if (!post) {
+    return {};
+  }
+
+  return {
+    title: post.title,
+    description: post.description,
+    authors: [{ name: post.author.name }],
+    robots: "index, follow",
+    openGraph: {
+      images: [post.img],
+    },
+  };
+}
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
